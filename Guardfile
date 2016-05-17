@@ -12,4 +12,18 @@ guard :minitest, spring: true, all_on_start: false do
   watch(%r{^lib/(.+)\.rb$})                               { |m| "test/lib/#{m[1]}_test.rb" }
   watch(%r{^test/.+_test\.rb$})
   watch(%r{^test/test_helper\.rb$}) { 'test' }
+
+  watch(%r{^app/views/([^/]*?)/.*\.html\.erb$}) do |matches|
+    ["test/controllers/#{matches[1]}_controller_test.rb"] +
+    integration_tests(matches[1])
+  end
+end
+
+# Returns the integration tests corresponding to the given resource.
+def integration_tests(resource = :all)
+  if resource == :all
+    Dir["test/integration/*"]
+  else
+    Dir["test/integration/#{resource}_*.rb"]
+  end
 end

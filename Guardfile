@@ -17,6 +17,10 @@ guard :minitest, spring: true, all_on_start: false do
     ["test/controllers/#{matches[1]}_controller_test.rb"] +
     integration_tests(matches[1])
   end
+
+  watch('app/views/layouts/application.html.erb') do
+    'test/integration/site_layout_test.rb'
+  end
 end
 
 # Returns the integration tests corresponding to the given resource.

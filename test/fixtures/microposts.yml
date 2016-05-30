@@ -36,3 +36,8 @@ zone:
   content: "Danger zone!"
   created_at: <%= 3.days.ago %>
   user: archer
+
+anything:
+  content: "This tweet clone sucks."
+  created_at: <%= 1.years.ago %>
+  user: malory

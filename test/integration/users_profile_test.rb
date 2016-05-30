@@ -3,6 +3,7 @@ require 'test_helper'
 class UsersProfileTest < ActionDispatch::IntegrationTest
   def setup
     @user = users(:michael)
+    @other_user = users(:anderson)
   end
 
   test "profile display" do
@@ -18,5 +19,10 @@ class UsersProfileTest < ActionDispatch::IntegrationTest
     end
     assert_match @user.following.count.to_s, response.body
     assert_match @user.followers.count.to_s, response.body
+  end
+
+  test "profile redirects to root if user is not activated" do
+    get user_path(@other_user)
+    assert_redirected_to root_path
   end
 end

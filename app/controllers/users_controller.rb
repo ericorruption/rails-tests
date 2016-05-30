@@ -1,6 +1,4 @@
 class UsersController < ApplicationController
-  # TODO: Write integration tests for both /users and /users/:id.
-
   before_action :logged_in_user, only: [:index,
                                         :edit,
                                         :update,

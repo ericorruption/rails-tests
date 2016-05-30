@@ -4,6 +4,7 @@ class UsersIndexTest < ActionDispatch::IntegrationTest
   def setup
     @admin = users(:michael)
     @user = users(:archer)
+    @other_user = users(:anderson)
   end
 
   test "index paginates" do
@@ -33,5 +34,11 @@ class UsersIndexTest < ActionDispatch::IntegrationTest
     log_in_as(@user)
     get users_path
     assert_select 'a', text: 'delete', count: 0
+  end
+
+  test "index shows only activated users" do
+    log_in_as(@user)
+    get users_path
+    assert_select 'a[href=?]', user_path(@other_user), count: 0
   end
 end

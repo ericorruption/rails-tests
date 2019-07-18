@@ -14,7 +14,7 @@ gem 'faker', '~> 1.6', '>= 1.6.3'
 gem 'will_paginate', '~> 3.1'
 gem 'will_paginate-bootstrap', '~> 1.0', '>= 1.0.1'
 gem 'carrierwave', '~> 0.11.2'
-gem 'mini_magick', '~> 4.5', '>= 4.5.1'
+gem 'mini_magick', '~> 4.9'
 gem 'fog', '~> 1.38'
 
 group :development do
